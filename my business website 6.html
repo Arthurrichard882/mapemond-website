@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mapemond Brand Consulting</title>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: Canvas;
+    color: CanvasText;
+    line-height: 1.6;
+    transition: 0.4s ease;
+  }
+
+  header {
+    background: CanvasText;
+    color: Canvas;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .container { width: 90%; max-width: 1100px; margin: auto; }
+
+  section { padding: 60px 0; }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  /* Service cards */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: Canvas;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 0.6s forwards ease-out;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover { transform: translateY(-6px); }
+
+  @keyframes fadeSlide {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Contact section layout */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  @media(max-width: 768px){
+    .contact-wrapper { grid-template-columns: 1fr; }
+  }
+
+  /* Contact form inputs */
+  form input, form textarea, form button {
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.12);
+    font-size: 1rem;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  form textarea { height: 150px; resize: none; }
+
+  form button {
+    background: CanvasText;
+    color: Canvas;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.3s;
+  }
+
+  form button:hover { opacity: 0.8; }
+
+  /* Contact info boxes (auto size restored) */
+  .contact-info {
+    background: Canvas;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    font-size: 1rem;
+    opacity: 0.9;
+    width: auto;  /* natural size like before */
+  }
+
+  footer {
+    background: CanvasText;
+    color: Canvas;
+    text-align: center;
+    padding: 18px 0;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: Canvas;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    width: auto;
+    min-width: 280px;
+    max-width: 360px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+
+  .close-btn {
+    margin-top: 15px;
+    background: CanvasText;
+    color: Canvas;
+    padding: 10px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+
+  .close-btn:hover { opacity: 0.7; }
+
+  /* Theme Toggle button moved to top-right */
+  #themeToggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    left: auto;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: Canvas;
+    color: CanvasText;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+
+  #themeToggle:hover { opacity: 0.7; }
+
+  /* Dark mode class */
+  body.dark {
+    background: #111;
+    color: #fff;
+  }
+
+  body.dark .service-card,
+  body.dark .contact-info,
+  body.dark .modal-content {
+    background: #1a1a1a;
+    border-color: rgba(255,255,255,0.06);
+  }
+
+  body.dark #themeToggle {
+    background: #222;
+    color: #fff;
+    border-color: #444;
+  }
+</style>
+</head>
+<body>
+
+<button id="themeToggle">Toggle Theme</button>
+
+<header>
+  <div class="container">
+    <h1>Mapemond Brand Consulting</h1>
+    <p>Strategic Management • Business Growth • Brand Intelligence</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About Us</h2>
+    <p style="text-align:center; max-width:750px; margin:auto; font-size:1.1rem; opacity:0.85;">
+      Mapemond Brand Consulting helps businesses scale through smart management strategy, brand structuring,
+      operational insights, and sustainable growth frameworks. We transform ideas into organized, high-performing brands.
+    </p>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card"><h3>Business Strategy</h3><p>Market analysis, competitive planning, structured growth models.</p></div>
+      <div class="service-card"><h3>Brand Development</h3><p>Identity creation, messaging, positioning frameworks.</p></div>
+      <div class="service-card"><h3>Management Consulting</h3><p>Process improvement, leadership advisory, performance audits.</p></div>
+      <div class="service-card"><h3>Operational Support</h3><p>Optimizing workflows, customer systems, internal operations.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-wrapper">
+
+      <div>
+        <form action="https://formspree.io/f/xpqwbgak" method="POST" id="contactForm">
+          <input type="text" name="name" placeholder="Full Name" required />
+          <input type="email" name="email" placeholder="Email Address" required />
+          <textarea name="message" placeholder="How can we help your business?" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <div><strong>Email:</strong> Business inquiries received are reviewed and responded to, within 24 hours</div>
+        <div><strong>Location:</strong> Consulting services available remotely & on-site</div>
+        <div><strong>Focus Areas:</strong> Business Management, Branding, Growth Strategy</div>
+        <div><strong>Response:</strong> Follow-up sent via email</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Mapemond Brand Consulting — All Rights Reserved</p>
+  <p>Designed for strategic business impact</p>
+</footer>
+
+<!-- Thank You Modal -->
+<div class="modal" id="thankModal">
+  <div class="modal-content">
+    <h3>Thank You!</h3>
+    <p>Your message has been delivered successfully. We will reach out within 24 hours.</p>
+    <button class="close-btn" id="closeModal">OK</button>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const modal = document.getElementById("thankModal");
+  const closeBtn = document.getElementById("closeModal");
+  const toggle = document.getElementById("themeToggle");
+
+  // Toggle now WORKS
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+  });
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        modal.style.display = "flex";
+        form.reset();
+      } else {
+        alert("Submission blocked. Please try again.");
+      }
+    } catch {
+      alert("Network failure. Check connection.");
+    }
+  });
+
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+</script>
+
+</body>
+</html>
